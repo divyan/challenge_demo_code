@@ -53,7 +53,7 @@ class ThreeETplus_Eyetracking(Dataset):
         )
 
         data_dir = save_to
-        data_list_dir = './dataset'
+        data_list_dir = '/content/challenge_demo_code/dataset'
         # Load filenames from the provided lists
         if split == "train":
             filenames = self.load_filenames(os.path.join(data_list_dir, "train_files.txt"))
@@ -66,12 +66,12 @@ class ThreeETplus_Eyetracking(Dataset):
 
         # Get the data file paths and target file paths
         if split == "train" or split == "val":
-            self.data = [os.path.join(data_dir, "train", f, f + ".h5") for f in filenames]
-            self.targets = [os.path.join(data_dir, "train", f, "label.txt") for f in filenames]
+            self.data = [os.path.join("/content/challenge_demo_code/dataset/event_data", "train", f, f + ".h5") for f in filenames]
+            self.targets = [os.path.join("/content/challenge_demo_code/dataset/event_data", "train", f, "label.txt") for f in filenames]
         elif split == "test":
-            self.data = [os.path.join(data_dir, "test", f, f + ".h5") for f in filenames]
+            self.data = [os.path.join("/content/challenge_demo_code/dataset/event_data", "test", f, f + ".h5") for f in filenames]
             # for test set, we load the placeholder labels with all zeros
-            self.targets = [os.path.join(data_dir, "test", f, "label_zeros.txt") for f in filenames]
+            self.targets = [os.path.join("/content/challenge_demo_code/dataset/event_data", "test", f, "label_zeros.txt") for f in filenames]
 
     def __getitem__(self, index: int) -> Tuple[Any, Any]:
         """
